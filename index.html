@@ -1,189 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trending Filter Chat</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PD Telegram - Horizontal Layout</title>
     <style>
+        :root { --tg-blue: #0088cc; --tg-bg: #e7ebf0; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background: #e5ddd5; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
-
-        .header { background: #075e54; color: white; padding: 12px 15px; display: flex; align-items: center; gap: 10px; font-weight: bold; }
-        .online-dot { width: 10px; height: 10px; background: #25d366; border-radius: 50%; }
-
-        #chat-window { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 15px; }
         
-        #trending-area { background: #fff; padding: 10px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #ccc; }
-        .trending-title { font-size: 12px; font-weight: bold; color: #075e54; margin-bottom: 8px; display: block; }
-        .trend-tag { display: inline-block; background: #e1f5fe; color: #0288d1; padding: 5px 12px; border-radius: 20px; font-size: 12px; margin-right: 5px; margin-bottom: 5px; cursor: pointer; border: 1px solid #b3e5fc; transition: 0.2s; }
-        .trend-tag:hover { background: #0288d1; color: white; }
+        body { background: #f0f2f5; height: 100vh; overflow: hidden; display: flex; justify-content: center; }
 
-        .bubble { max-width: 85%; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; position: relative; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        .user-msg { background: #dcf8c6; align-self: flex-end; border-top-right-radius: 0; }
-        .bot-msg { background: #ffffff; align-self: flex-start; border-top-left-radius: 0; border-left: 4px solid #24A1DE; }
+        .clone-container {
+            width: 100%; max-width: 450px; height: 100vh; background: var(--tg-bg);
+            display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+        }
 
-        /* INSTAGRAM BUTTON STYLE */
-        .insta-btn { display: inline-block; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white !important; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 13px; margin-top: 10px; }
-        .insta-btn i { margin-right: 5px; }
+        .fixed-top {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; flex-direction: column;
+        }
 
-        .video-card { background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #ddd; margin-top: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .video-card img { width: 100%; height: auto; display: block; }
-        .video-info { padding: 12px; }
-        .btn-link { display: block; background: #24A1DE; color: white !important; text-align: center; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+        .header { 
+            background: var(--tg-blue); color: white; padding: 12px 15px; 
+            display: flex; align-items: center; gap: 12px;
+        }
+        .avatar { 
+            width: 40px; height: 40px; background: white; border-radius: 50%; 
+            color: var(--tg-blue); display: flex; align-items: center; 
+            justify-content: center; font-weight: bold; font-size: 18px; 
+        }
 
-        .time { font-size: 10px; color: #999; text-align: right; margin-top: 5px; }
+        .category-bar { 
+            display: flex; background: white; padding: 10px; gap: 8px; 
+            border-bottom: 1px solid #ddd;
+        }
 
-        .input-bar { background: #f0f0f0; padding: 10px; display: flex; gap: 10px; align-items: center; border-top: 1px solid #ddd; }
-        .input-bar input { flex: 1; padding: 12px 18px; border-radius: 25px; border: none; outline: none; }
-        .send-btn { background: #075e54; color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
+        .cat-btn {
+            flex: 1; padding: 10px 5px; border: 1px solid #e0e0e0; border-radius: 20px; 
+            background: #f8f9fa; color: #555; font-weight: bold; font-size: 12px; 
+            cursor: pointer; transition: all 0.2s ease; display: flex;
+            align-items: center; justify-content: center; gap: 4px;
+        }
+
+        .cat-btn.active { 
+            background: var(--tg-blue); color: white; border-color: var(--tg-blue);
+        }
+
+        #content-feed { 
+            flex: 1; padding: 10px; overflow-y: auto; 
+            display: flex; flex-direction: column; gap: 12px;
+        }
+
+        /* Horizontal Layout for Post */
+        .msg-bubble { 
+            background: white; border-radius: 12px; width: 100%; 
+            align-self: flex-start; border-bottom-left-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.15); overflow: hidden;
+            display: flex; /* Flex use kiya hai side-by-side ke liye */
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .thumb-container { width: 40%; position: relative; }
+        .thumb-img { width: 100%; height: 100%; min-height: 100px; object-fit: cover; background: #eee; display: block; }
+
+        .post-body { 
+            width: 60%; padding: 10px; 
+            display: flex; flex-direction: column; justify-content: space-between; 
+        }
+
+        .post-info { margin-bottom: 8px; }
+        .post-title { font-size: 14px; font-weight: bold; color: #000; line-height: 1.2; display: block; }
+        .post-desc { font-size: 11px; color: #666; margin-top: 4px; }
+
+        .watch-btn { 
+            display: flex; align-items: center; justify-content: center; gap: 5px;
+            width: 100%; text-align: center; padding: 8px; 
+            background: #eef7ff; color: var(--tg-blue); text-decoration: none; 
+            border-radius: 6px; font-weight: bold; font-size: 13px;
+            border: 1px solid rgba(0, 136, 204, 0.2);
+        }
+        .watch-btn:active { background: #d0e7ff; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <div class="online-dot"></div>
-        <span>Vairal TV bot</span>
-    </div>
-
-    <div id="chat-window">
-        <div id="trending-area">
-            <span class="trending-title"><i class="fas fa-fire"></i> Trending Videos</span>
-            <div id="trend-list">Loading trends...</div>
+<div class="clone-container">
+    <div class="fixed-top">
+        <div class="header">
+            <div class="avatar">PD</div>
+            <div>
+                <div style="font-weight: bold; font-size: 16px;">PD Official Clone</div>
+                <div style="font-size: 11px; opacity: 0.8;">online</div>
+            </div>
         </div>
 
-        <div class="bubble bot-msg">
-            <div style="font-size: 11px; font-weight: bold; color: #24A1DE; margin-bottom: 4px;">System</div>
-            Welcome! to Vairal TV bot.... Up jis video dekna chatty ho, charge karo video miljayeggi Or Help kya liye Instagram par SMS karo. Thank you 🙏🏼 🙏🏼 .
-            <br>
-            <a href="https://www.instagram.com/vairal_tv_bot?igsh=aTJmc3JsbHN1dmNr" target="_blank" class="insta-btn">
-                <i class="fab fa-instagram"></i> Follow Instagram
-            </a>
-            <div class="time">Just now</div>
+        <div class="category-bar">
+            <button class="cat-btn" id="btn-indian" onclick="showIndianPosts(this)">🇮🇳 Indian</button>
+            <button class="cat-btn" onclick="showBangladeshiPosts(this)">🇧🇩 Bangla</button>
+            <button class="cat-btn" onclick="showOthersPosts(this)">🌐 Others</button>
         </div>
     </div>
 
-    <div class="input-bar">
-        <input type="text" id="chat-input" placeholder="Type keyword...">
-        <button class="send-btn" onclick="handleUserChat()">
-            <i class="fas fa-paper-plane"></i>
-        </button>
-    </div>
+    <div id="content-feed"></div>
+</div>
 
-    <script>
-        const BOT_TOKEN = '7938751733:AAEdQC9P6d2T_Q8Ub7pCW3IhmjgxyT5KKkg';
-        const CHAT_ID = '6262892880';
-        const INSTA_URL = "https://www.instagram.com/vairal_tv_bot?igsh=aTJmc3JsbHN1dmNr"; // Apna link yahan dalein
+<script>
+    const feed = document.getElementById('content-feed');
 
-        document.addEventListener('DOMContentLoaded', () => {
-            updateTrendingUI();
+    const indianPosts = [
+        { title: "Payal gaming video mp.4", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "paygameing 1 mint 16 secend video !" },
+        { title: "St vv yh eo mp.4", thumb: "no-thumb", link: "http", desc: "Latest update." }
+    ];
+
+    const banglaPosts = [
+        { title: "Arohi mine Vadeo mp.4", thumb: "https://i.ibb.co/BKKMdGs8/In-Shot-20260209-220540287.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine 3 mint 24 second video!" }
+    ];
+
+    const othersPosts = [
+        { title: "Global Clip mp.4", thumb: "no-thumb", link: "#", desc: "Others category." }
+    ];
+
+    function showIndianPosts(btn) { setActive(btn); render(indianPosts); }
+    function showBangladeshiPosts(btn) { setActive(btn); render(banglaPosts); }
+    function showOthersPosts(btn) { setActive(btn); render(othersPosts); }
+
+    function render(posts) {
+        feed.innerHTML = "";
+        posts.forEach(post => {
+            feed.innerHTML += `
+                <div class="msg-bubble">
+                    <div class="thumb-container">
+                        <img src="${post.thumb}" class="thumb-img" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+                    </div>
+                    <div class="post-body">
+                        <div class="post-info">
+                            <span class="post-title">${post.title}</span>
+                            <p class="post-desc">${post.desc}</p>
+                        </div>
+                        <a href="${post.link}" target="_blank" class="watch-btn">▶️ Watch now</a>
+                    </div>
+                </div>
+            `;
         });
+        feed.scrollTop = 0;
+    }
 
-        function handleUserChat(manualText = null) {
-            const input = document.getElementById('chat-input');
-            const userText = manualText || input.value.trim();
-            
-            if (!userText) return;
+    function setActive(clickedBtn) {
+        document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+        clickedBtn.classList.add('active');
+    }
 
-            renderMessage(userText, 'user-msg', 'You');
-            input.value = '';
+    window.onload = () => showIndianPosts(document.getElementById('btn-indian'));
+</script>
 
-            const savedPosts = JSON.parse(localStorage.getItem('advance_auto_posts')) || {};
-            let clickData = JSON.parse(localStorage.getItem('post_clicks')) || {};
-            const lowerUserText = userText.toLowerCase();
-
-            setTimeout(() => {
-                let found = false;
-                for (let keyword in savedPosts) {
-                    if (lowerUserText.includes(keyword)) {
-                        const post = savedPosts[keyword];
-                        if(post.hidden === true) continue; 
-
-                        clickData[keyword] = (clickData[keyword] || 0) + 1;
-                        localStorage.setItem('post_clicks', JSON.stringify(clickData));
-                        updateTrendingUI();
-
-                        const cardHTML = `
-                            <div class="video-card">
-                                <img src="${post.thumb}">
-                                <div class="video-info">
-                                    <span style="font-weight:bold;">${post.title}</span>
-                                    <a href="${post.url}" target="_blank" class="btn-link">
-                                        <i class="fas fa-play-circle"></i> Watch Full Video
-                                    </a>
-                                </div>
-                            </div>`;
-                        
-                        renderMessage(cardHTML, 'bot-msg', 'Auto Bot');
-                        found = true;
-                        break;
-                    }
-                }
-                
-                // --- NO RESULTS MESSAGE WITH INSTA BUTTON ---
-                if (!found) {
-                    const noResultHTML = `
-                        Sorry, is naam se koi video nahi hai. Help ke liye Instagram par SMS karo.
-                        <br>
-                        <a href="${INSTA_URL}" target="_blank" class="insta-btn">
-                            <i class="fab fa-instagram"></i> Follow on Instagram
-                        </a>`;
-                    renderMessage(noResultHTML, 'bot-msg', 'Auto Bot');
-                }
-                
-                logToTelegram(userText);
-            }, 600);
-        }
-
-        function updateTrendingUI() {
-            const trendList = document.getElementById('trend-list');
-            const clickData = JSON.parse(localStorage.getItem('post_clicks')) || {};
-            const savedPosts = JSON.parse(localStorage.getItem('advance_auto_posts')) || {};
-            
-            const sorted = Object.entries(clickData)
-                .filter(([key]) => savedPosts[key] && !savedPosts[key].hidden)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 5);
-
-            if (sorted.length === 0) {
-                trendList.innerHTML = '<span style="font-size:11px; color:#999;">Search to see trends</span>';
-                return;
-            }
-
-            trendList.innerHTML = '';
-            sorted.forEach(([key, clicks]) => {
-                const tag = document.createElement('span');
-                tag.className = 'trend-tag';
-                tag.innerHTML = `#${key}`;
-                tag.onclick = () => handleUserChat(key);
-                trendList.appendChild(tag);
-            });
-        }
-
-        function renderMessage(text, className, sender) {
-            const window = document.getElementById('chat-window');
-            const displayTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            
-            const html = `
-                <div class="bubble ${className}">
-                    <div style="font-size: 10px; font-weight: bold; margin-bottom: 3px; opacity: 0.8;">${sender}</div>
-                    <div>${text}</div>
-                    <div class="time">${displayTime}</div>
-                </div>`;
-            
-            window.insertAdjacentHTML('beforeend', html);
-            window.scrollTop = window.scrollHeight;
-        }
-
-        async function logToTelegram(text) {
-            try {
-                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ chat_id: CHAT_ID, text: `User Searched: ${text}` })
-                });
-            } catch (e) {}
-        }
-    </script>
 </body>
-  </html>
+</html>
