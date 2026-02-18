@@ -2,137 +2,148 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PD Telegram - Tracked Layout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Shortener & Monetizer - Custom Ads</title>
     <style>
-        :root { --tg-blue: #0088cc; --tg-bg: #e7ebf0; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        
-        body { background: #f0f2f5; height: 100vh; overflow: hidden; display: flex; justify-content: center; }
-
-        .clone-container {
-            width: 100%; max-width: 450px; height: 100vh; background: var(--tg-bg);
-            display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
-        }
-
-        .fixed-top { position: sticky; top: 0; z-index: 100; display: flex; flex-direction: column; }
-
-        .header { background: var(--tg-blue); color: white; padding: 12px 15px; display: flex; align-items: center; gap: 12px; }
-        .avatar { width: 40px; height: 40px; background: white; border-radius: 50%; color: var(--tg-blue); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; }
-
-        .category-bar { display: flex; background: white; padding: 10px; gap: 8px; border-bottom: 1px solid #ddd; }
-        .cat-btn { flex: 1; padding: 10px 5px; border: 1px solid #e0e0e0; border-radius: 20px; background: #f8f9fa; color: #555; font-weight: bold; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; transition: 0.2s; }
-        .cat-btn.active { background: var(--tg-blue); color: white; border-color: var(--tg-blue); }
-
-        #content-feed { flex: 1; padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-
-        .msg-bubble { background: white; border-radius: 12px; width: 100%; display: flex; overflow: hidden; animation: fadeIn 0.3s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.15); }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .thumb-container { width: 40%; }
-        .thumb-img { width: 100%; height: 100%; min-height: 100px; object-fit: cover; background: #eee; display: block; }
-
-        .post-body { width: 60%; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; }
-        .post-title { font-size: 14px; font-weight: bold; color: #000; line-height: 1.2; }
-        .post-desc { font-size: 11px; color: #666; margin-top: 4px; }
-
-        .watch-btn { 
-            display: flex; align-items: center; justify-content: center; gap: 5px;
-            width: 100%; padding: 8px; background: #eef7ff; color: var(--tg-blue); 
-            text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 13px;
-            border: 1px solid rgba(0, 136, 204, 0.2); cursor: pointer;
-        }
-        .watch-btn:active { background: #d0e7ff; }
+        body { font-family: 'Arial', sans-serif; background: #f0f2f5; text-align: center; padding: 20px; }
+        .box { background: white; max-width: 500px; margin: 30px auto; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .ad-container { min-height: 260px; background: #fafafa; margin: 20px 0; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+        .ad-container img { max-width: 100%; max-height: 250px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .ad-container img:hover { opacity: 0.9; }
+        .btn { background: #007bff; color: white; border: none; padding: 15px 25px; border-radius: 8px; cursor: pointer; width: 100%; font-size: 18px; font-weight: bold; }
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
+        #timer { font-size: 24px; color: #e74c3c; font-weight: bold; margin: 15px 0; }
+        .hidden { display: none; }
+        .ad-label { font-size: 10px; color: #999; text-transform: uppercase; margin-bottom: 5px; }
     </style>
 </head>
 <body>
 
-<div class="clone-container">
-    <div class="fixed-top">
-        <div class="header">
-            <div class="avatar">PD</div>
-            <div>
-                <div style="font-weight: bold; font-size: 16px;">PD Official Clone</div>
-                <div style="font-size: 11px; opacity: 0.8;">online</div>
-            </div>
-        </div>
-        <div class="category-bar">
-            <button class="cat-btn" id="btn-indian" onclick="showIndianPosts(this)">🇮🇳 Indian</button>
-            <button class="cat-btn" onclick="showBangladeshiPosts(this)">🇧🇩 Bangla</button>
-            <button class="cat-btn" onclick="showOthersPosts(this)">🌐 Others</button>
-        </div>
+<div id="maker" class="box">
+    <h3>🔗 Custom Link Generator</h3>
+    <input type="text" id="urlInput" placeholder="Apna Link Yahan Paste Karein">
+    
+    <label style="display:block; text-align:left; margin-top:10px; font-size: 14px;">Ads Steps Select Karein:</head></label>
+    <select id="adCount">
+        <option value="1">1 Step (Fast)</option>
+        <option value="2">2 Steps</option>
+        <option value="3">3 Steps</option>
+        <option value="5">5 Steps (High Views)</option>
+    </select>
+
+    <button class="btn" onclick="generate()">Create Short Link</button>
+    
+    <div id="out" class="hidden" style="margin-top:20px; padding-top:15px; border-top:1px solid #eee;">
+        <p style="font-size: 14px; font-weight: bold;">Aapka Final Link:</p>
+        <input type="text" id="res" readonly style="background: #e9ecef;">
+        <button class="btn" style="background: #28a745;" onclick="copyLink()">Copy Link</button>
     </div>
-    <div id="content-feed"></div>
+</div>
+
+<div id="player" class="box hidden">
+    <div style="font-size: 14px; color: #666; font-weight: bold;" id="stepTxt">Step 1 of X</div>
+    <h2 style="font-size: 18px; margin: 10px 0;">Please wait...</h2>
+    
+    <div class="ad-label">ADVERTISEMENT</div>
+    <div class="ad-container" id="adBox">
+        </div>
+
+    <div id="timer">Intezar Karein: <span id="sec">10</span>s</div>
+    <button id="nextBtn" class="btn hidden" onclick="nextStep()">Continue Next Step</button>
 </div>
 
 <script>
-    const BOT_TOKEN = '7938751733:AAEdQC9P6d2T_Q8Ub7pCW3IhmjgxyT5KKkg';
-    const CHAT_ID = '6262892880';
-    const feed = document.getElementById('content-feed');
+    // ==========================================
+    // ⚙️ SETTINGS: YAHAN APNA LINK AUR IMAGE BADLEIN
+    // ==========================================
+    const MY_AD_IMAGE = "https://via.placeholder.com/300x250?text=Apni+Image+Link+Yahan+Dalein"; // Direct Image Link
+    const MY_AD_URL = "https://t.me/your_social_group"; // Image Click karne par kahan bhejna hai
+    // ==========================================
 
-    const indianPosts = [
-        { title: "Payal gaming video mp.4", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "paygameing 1 mint 16 secend video !" },
-        { title: "St vv yh eo mp.4", thumb: "no-thumb", link: "#", desc: "Latest update." }
-    ];
+    let current = 1, total = 1, targetLink = "";
 
-    const banglaPosts = [
-        { title: "Arohi mine Vadeo mp.4", thumb: "https://i.ibb.co/BKKMdGs8/In-Shot-20260209-220540287.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine 3 mint 24 second video!" }
-    ];
-
-    const othersPosts = [
-        { title: "Global Clip mp.4", thumb: "no-thumb", link: "#", desc: "Others category." }
-    ];
-
-    // Notification Function
-    async function sendLog(videoTitle) {
-        const message = `🔔 *User Clicked Video*\n\n📺 Title: ${videoTitle}\n⏰ Time: ${new Date().toLocaleString()}`;
-        try {
-            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: message,
-                    parse_mode: 'Markdown'
-                })
-            });
-        } catch (e) { console.error("Log failed", e); }
+    function injectAd() {
+        const adBox = document.getElementById('adBox');
+        adBox.innerHTML = ''; // Purana ad clear karein
+        
+        // Naya Link aur Image element banana
+        const linkTag = document.createElement('a');
+        linkTag.href = MY_AD_URL;
+        linkTag.target = "_blank";
+        
+        const imgTag = document.createElement('img');
+        imgTag.src = MY_AD_IMAGE;
+        imgTag.alt = "Ad Image";
+        
+        linkTag.appendChild(imgTag);
+        adBox.appendChild(linkTag);
     }
 
-    function showIndianPosts(btn) { setActive(btn); render(indianPosts); }
-    function showBangladeshiPosts(btn) { setActive(btn); render(banglaPosts); }
-    function showOthersPosts(btn) { setActive(btn); render(othersPosts); }
-
-    function render(posts) {
-        feed.innerHTML = "";
-        posts.forEach(post => {
-            const item = document.createElement('div');
-            item.className = 'msg-bubble';
-            item.innerHTML = `
-                <div class="thumb-container">
-                    <img src="${post.thumb}" class="thumb-img" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
-                </div>
-                <div class="post-body">
-                    <div class="post-info">
-                        <span class="post-title">${post.title}</span>
-                        <p class="post-desc">${post.desc}</p>
-                    </div>
-                    <a href="${post.link}" target="_blank" class="watch-btn" onclick="sendLog('${post.title.replace(/'/g, "\\'")}')">▶️ Watch now</a>
-                </div>
-            `;
-            feed.appendChild(item);
-        });
-        feed.scrollTop = 0;
+    function generate() {
+        let inputUrl = document.getElementById('urlInput').value;
+        if(!inputUrl) { alert("Pehle link dalein!"); return; }
+        
+        let ads = document.getElementById('adCount').value;
+        let encoded = btoa(inputUrl); 
+        let shortUrl = window.location.href.split('?')[0] + "?go=" + encoded + "&s=" + ads;
+        
+        document.getElementById('res').value = shortUrl;
+        document.getElementById('out').classList.remove('hidden');
     }
 
-    function setActive(clickedBtn) {
-        document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-        clickedBtn.classList.add('active');
+    function copyLink() {
+        let copyText = document.getElementById("res");
+        copyText.select();
+        document.execCommand("copy");
+        alert("Link Copy Ho Gaya!");
     }
 
-    window.onload = () => showIndianPosts(document.getElementById('btn-indian'));
+    window.onload = function() {
+        let params = new URLSearchParams(window.location.search);
+        if(params.has('go')) {
+            document.getElementById('maker').classList.add('hidden');
+            document.getElementById('player').classList.remove('hidden');
+            
+            targetLink = atob(params.get('go'));
+            total = parseInt(params.get('s'));
+            startProcess();
+        }
+    }
+
+    function startProcess() {
+        injectAd(); 
+        document.getElementById('stepTxt').innerText = "Step " + current + " of " + total;
+        document.getElementById('nextBtn').classList.add('hidden');
+        document.getElementById('timer').classList.remove('hidden');
+        
+        let timeLeft = 10;
+        document.getElementById('sec').innerText = timeLeft;
+
+        let interval = setInterval(() => {
+            timeLeft--;
+            document.getElementById('sec').innerText = timeLeft;
+            if(timeLeft <= 0) {
+                clearInterval(interval);
+                document.getElementById('timer').classList.add('hidden');
+                document.getElementById('nextBtn').classList.remove('remove'); // Fix: Class hatane ke liye
+                document.getElementById('nextBtn').classList.remove('hidden');
+                
+                if(current == total) {
+                    document.getElementById('nextBtn').innerText = "Get Final Link";
+                    document.getElementById('nextBtn').style.background = "#28a745";
+                }
+            }
+        }, 1000);
+    }
+
+    function nextStep() {
+        if(current < total) {
+            current++;
+            startProcess();
+        } else {
+            window.location.href = targetLink;
+        }
+    }
 </script>
 
 </body>
