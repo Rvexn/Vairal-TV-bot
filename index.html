@@ -2,174 +2,280 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <script src="https://pl28729896.effectivegatecpm.com/53/fb/7c/53fb7cda091e4b9396c5f2eeab9fdf7f.js"></script>
+   <script src="https://pl28729896.effectivegatecpm.com/53/fb/7c/53fb7cda091e4b9396c5f2eeab9fdf7f.js"></script>
 
-    
-    <title>Link Shortener & Monetizer - Custom Ads</title>
+
+    <title>Vairal-hub Vx </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Arial', sans-serif; background: #f0f2f5; text-align: center; padding: 20px; }
-        .box { background: white; max-width: 500px; margin: 30px auto; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .ad-container { min-height: 260px; background: #fafafa; margin: 20px 0; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
-        .ad-container img { max-width: 100%; max-height: 250px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
-        .ad-container img:hover { opacity: 0.9; }
-        .btn { background: #007bff; color: white; border: none; padding: 15px 25px; border-radius: 8px; cursor: pointer; width: 100%; font-size: 18px; font-weight: bold; }
-        input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
-        #timer { font-size: 24px; color: #e74c3c; font-weight: bold; margin: 15px 0; }
-        .hidden { display: none; }
-        .ad-label { font-size: 10px; color: #999; text-transform: uppercase; margin-bottom: 5px; }
+        :root { --tg-blue: #0088cc; --tg-bg: #e7ebf0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        
+        body { background: #f0f2f5; height: 100vh; overflow: hidden; display: flex; justify-content: center; }
+
+        .clone-container {
+            width: 100%; max-width: 450px; height: 100vh; background: var(--tg-bg);
+            display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+            background-size: cover;
+        }
+
+        .sticky-top { position: sticky; top: 0; z-index: 1000; display: flex; flex-direction: column; }
+        
+        .header { background: var(--tg-blue); color: white; padding: 10px 15px; display: flex; align-items: center; justify-content: space-between; }
+        .header-left { display: flex; align-items: center; gap: 10px; }
+        .avatar { width: 38px; height: 38px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid rgba(255,255,255,0.4); }
+
+        .social-icons-header { display: flex; gap: 12px; align-items: center; }
+        .social-icons-header a { color: white; font-size: 18px; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255,255,255,0.1); border-radius: 50%; }
+
+        #content-feed { flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; -webkit-overflow-scrolling: touch; }
+
+        .msg-bubble { background: white; border-radius: 12px; width: 100%; display: flex; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.15); flex-shrink: 0; min-height: 120px; }
+        
+        /* Trailer Style */
+        .trailer-bubble { opacity: 0.6; filter: grayscale(0.5); border: 1px solid #ddd; }
+        .trailer-label { background: #ff4757; color: white; font-size: 9px; padding: 2px 6px; border-radius: 4px; position: absolute; margin: 5px; font-weight: bold; }
+
+        .thumb-container { width: 38%; flex-shrink: 0; position: relative; }
+        .thumb-img { width: 100%; height: 100%; object-fit: cover; background: #eee; }
+
+        .post-body { width: 62%; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        .title-wrapper { display: flex; justify-content: space-between; align-items: flex-start; gap: 5px; }
+        .post-title { font-size: 14px; font-weight: bold; color: #000; line-height: 1.2; flex: 1; }
+        .wa-share-btn { color: #25D366; text-decoration: none; font-size: 18px; padding: 2px; }
+
+        .post-desc { font-size: 11px; color: #666; margin-bottom: 5px; }
+
+        .watch-btn { display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%; padding: 8px; background: #eef7ff; color: var(--tg-blue); text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 12px; border: 1px solid rgba(0, 136, 204, 0.1); }
+        .locked-btn { background: #f1f2f6; color: #747d8c; border: 1px solid #dfe4ea; cursor: not-allowed; }
+
+        .feed-footer { margin: 10px 0 30px 0; padding: 15px; text-align: center; background: rgba(255, 255, 255, 0.9); border-radius: 15px; flex-shrink: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .channel-btn-container { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
+        .channel-link { display: block; width: 100%; padding: 10px; background: var(--tg-blue); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 13px; }
+
+        .footer-icons { display: flex; justify-content: center; gap: 20px; margin-top: 10px; border-top: 1px solid #eee; padding-top: 10px; }
+        .footer-icons a { font-size: 26px; text-decoration: none; }
+
+        .timer-box { background: #fff; padding: 10px; border-radius: 10px; text-align: center; margin-bottom: 10px; border: 1px dashed var(--tg-blue); }
+        .timer-text { font-size: 12px; color: #444; font-weight: bold; }
+        #countdown { color: #ff4757; font-size: 16px; }
+        .section-header { font-size: 14px; font-weight: bold; color: var(--tg-blue); margin: 10px 0 5px 0; display: flex; align-items: center; gap: 5px; }
     </style>
 </head>
 <body>
 
-<div id="maker" class="box">
-    <h3>🔗 Custom Link Generator</h3>
-    <input type="text" id="urlInput" placeholder="Apna Link Yahan Paste Karein">
-    
-    <label style="display:block; text-align:left; margin-top:10px; font-size: 14px;">Ads Steps Select Karein:</head></label>
-    <select id="adCount">
-        <option value="1">1 Step (Fast)</option>
-        <option value="2">2 Steps</option>
-        <option value="3">3 Steps</option>
-        <option value="5">5 Steps (High Views)</option>
-    </select>
-
-    <button class="btn" onclick="generate()">Create Short Link</button>
-    
-    <div id="out" class="hidden" style="margin-top:20px; padding-top:15px; border-top:1px solid #eee;">
-        <p style="font-size: 14px; font-weight: bold;">Aapka Final Link:</p>
-        <input type="text" id="res" readonly style="background: #e9ecef;">
-        <button class="btn" style="background: #28a745;" onclick="copyLink()">Copy Link</button>
-    </div>
-</div>
-
-<div id="player" class="box hidden">
-    <div style="font-size: 14px; color: #666; font-weight: bold;" id="stepTxt">Step 1 of X</div>
-    <h2 style="font-size: 18px; margin: 10px 0;">Please wait...</h2>
-    
-    <div class="ad-label">ADVERTISEMENT</div>
-    <div class="ad-container" id="adBox">
+<div class="clone-container">
+    <div class="sticky-top">
+        <div class="header">
+            <div class="header-left">
+                <div class="avatar">Bot</div>
+                <div>
+                    <div style="font-weight: bold; font-size: 14px;">Vairal-tv bot </div>
+                    <div style="font-size: 10px; opacity: 0.8;">online</div>
+                </div>
+            </div>
+            <div class="social-icons-header">
+                <a href="https://t.me/Vairal_hub_Vx"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://t.me/Vairal_hub_Vx"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/Vairal_hub_Vx"><i class="fab fa-facebook-f"></i></a>
+            </div>
         </div>
-
-    <div id="timer">Intezar Karein: <span id="sec">10</span>s</div>
-    <button id="nextBtn" class="btn hidden" onclick="nextStep()">Continue Next Step</button>
+    </div>
+    <div id="content-feed"></div>
 </div>
 
 <script>
-    // ==========================================
-    // ⚙️ SETTINGS: YAHAN APNA LINK AUR IMAGE BADLEIN
-    // ==========================================
-    const MY_AD_IMAGE = "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg"; // Direct Image Link
-    const MY_AD_URL = "https://vairal-tv-channel-231.vercel.app/"; // Image Click karne par kahan bhejna hai
-    // ==========================================
 
-    let current = 1, total = 1, targetLink = "";
+    const BOT_TOKEN = '7938751733:AAEdQC9P6d2T_Q8Ub7pCW3IhmjgxyT5KKkg';
+    const CHAT_ID = '6262892880';
+    const FIXED_YOUTUBE_LINK = "https://vairal-tv-bot.vercel.app/"; 
 
-    function injectAd() {
-        const adBox = document.getElementById('adBox');
-        adBox.innerHTML = ''; // Purana ad clear karein
-        
-        // Naya Link aur Image element banana
-        const linkTag = document.createElement('a');
-        linkTag.href = MY_AD_URL;
-        linkTag.target = "_blank";
-        
-        const imgTag = document.createElement('img');
-        imgTag.src = MY_AD_IMAGE;
-        imgTag.alt = "Ad Image";
-        
-        linkTag.appendChild(imgTag);
-        adBox.appendChild(linkTag);
-    }
+    // Saari posts yahan add karein (Kam se kam 20-30 videos rakhen)
+    const allPosts = [
+        { title: "11ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "12yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "13rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "14ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "15yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "16rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "17ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "18ayal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "19rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "20ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "21ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "22ayal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "23hi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "24ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "25ayal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "26rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "27al gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "28ayal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "29ohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "30yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "0rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "1ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "2yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "3rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "4ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "5al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "6rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "7ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "8al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "9rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "31ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "32yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "33rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "34ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "35al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "36rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "37ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "38al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "39rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "41ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "42yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "43rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "44ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "45al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "46rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "47ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "48al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "49rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "51ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "52yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "53rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "54ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "55al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "56rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "57ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "58al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "59rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "61ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "62yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "63rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "64ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "65al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "66rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "67ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "68al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "69rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "71ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "72yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "73rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "74ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "75al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "76rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "77ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "78al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "79rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "81ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "82yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "83rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "84ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "85al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "86rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
+        { title: "87ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "88al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
+        { title: "89rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
 
-    function generate() {
-        let inputUrl = document.getElementById('urlInput').value;
-        if(!inputUrl) { alert("Pehle link dalein!"); return; }
-        
-        let ads = document.getElementById('adCount').value;
-        let encoded = btoa(inputUrl); 
-        let shortUrl = window.location.href.split('?')[0] + "?go=" + encoded + "&s=" + ads;
-        
-        document.getElementById('res').value = shortUrl;
-        document.getElementById('out').classList.remove('hidden');
-    }
+        // ... Baaki 10-20 videos yahan copy-paste kar dein
+    ];
 
-    function copyLink() {
-        let copyText = document.getElementById("res");
-        copyText.select();
-        document.execCommand("copy");
-        alert("Link Copy Ho Gaya!");
-    }
+    function updateTimerAndFeed() {
+        const now = new Date();
+        const msIn4Hours = 4 * 60 * 60 * 1000;
+        const currentBlock = Math.floor(now.getTime() / msIn4Hours);
+        const nextBlockTime = (currentBlock + 1) * msIn4Hours;
+        const timeLeft = nextBlockTime - now.getTime();
 
-    window.onload = function() {
-        let params = new URLSearchParams(window.location.search);
-        if(params.has('go')) {
-            document.getElementById('maker').classList.add('hidden');
-            document.getElementById('player').classList.remove('hidden');
-            
-            targetLink = atob(params.get('go'));
-            total = parseInt(params.get('s'));
-            startProcess();
+        const h = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((timeLeft / (1000 * 60)) % 60);
+        const s = Math.floor((timeLeft / 1000) % 60);
+        const timerDisplay = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        
+        const startIndex = (currentBlock * 6) % allPosts.length;
+        const activePosts = allPosts.slice(startIndex, startIndex + 6);
+        
+        // Next 10 posts for Trailer section
+        const trailerIndex = (startIndex + 6) % allPosts.length;
+        const trailerPosts = allPosts.slice(trailerIndex, trailerIndex + 6);
+
+        const feed = document.getElementById('content-feed');
+        feed.innerHTML = `
+            <div class="timer-box">
+                <p class="timer-text">🔥 NEXT UPDATE IN: <span id="countdown">${timerDisplay}</span></p>
+            </div>
+            <div class="section-header">⭐ TRENDING NOW (6)</div>
+        `;
+
+        activePosts.forEach(post => feed.appendChild(createPostBubble(post, false)));
+
+        if(trailerPosts.length > 0) {
+            const trHeader = document.createElement('div');
+            trHeader.className = 'section-header';
+            trHeader.innerHTML = "🎬 NEXT COMING TRAILERS (6)";
+            feed.appendChild(trHeader);
+            trailerPosts.forEach(post => feed.appendChild(createPostBubble(post, true)));
         }
+
+        renderFooter();
     }
 
-    function startProcess() {
-        injectAd(); 
-        document.getElementById('stepTxt').innerText = "Step " + current + " of " + total;
-        document.getElementById('nextBtn').classList.add('hidden');
-        document.getElementById('timer').classList.remove('hidden');
+    function createPostBubble(post, isTrailer) {
+        const shareText = encodeURIComponent(`📺 Vairal video : ${post.title}\n\n🔗 Video Link: ${FIXED_YOUTUBE_LINK}`);
+        const waLink = `https://wa.me/?text=${shareText}`;
         
-        let timeLeft = 10;
-        document.getElementById('sec').innerText = timeLeft;
-
-        let interval = setInterval(() => {
-            timeLeft--;
-            document.getElementById('sec').innerText = timeLeft;
-            if(timeLeft <= 0) {
-                clearInterval(interval);
-                document.getElementById('timer').classList.add('hidden');
-                document.getElementById('nextBtn').classList.remove('remove'); // Fix: Class hatane ke liye
-                document.getElementById('nextBtn').classList.remove('hidden');
-                
-                if(current == total) {
-                    document.getElementById('nextBtn').innerText = "Get Final Link";
-                    document.getElementById('nextBtn').style.background = "#28a745";
-                }
-            }
-        }, 1000);
+        const item = document.createElement('div');
+        item.className = `msg-bubble ${isTrailer ? 'trailer-bubble' : ''}`;
+        item.innerHTML = `
+            <div class="thumb-container">
+                ${isTrailer ? '<span class="trailer-label">COMING SOON</span>' : ''}
+                <img src="${post.thumb}" class="thumb-img">
+            </div>
+            <div class="post-body">
+                <div class="post-info">
+                    <div class="title-wrapper">
+                        <span class="post-title">${post.title}</span>
+                        ${!isTrailer ? `<a href="${waLink}" target="_blank" class="wa-share-btn"><i class="fab fa-whatsapp"></i></a>` : ''}
+                    </div>
+                    <p class="post-desc">${post.desc}</p>
+                </div>
+                <a href="${isTrailer ? 'javascript:void(0)' : post.link}" target="_blank" 
+                   class="watch-btn ${isTrailer ? 'locked-btn' : ''}" 
+                   onclick="${isTrailer ? 'return false;' : `sendLog('${post.title.replace(/'/g, "\\'")}')`}">
+                   ${isTrailer ? '🔒 Coming in 4h...' : '▶️ Watch now'}
+                </a>
+            </div>
+        `;
+        return item;
     }
 
-    function nextStep() {
-        if(current < total) {
-            current++;
-            startProcess();
-        } else {
-            window.location.href = targetLink;
-        }
+    function renderFooter() {
+        const footer = document.createElement('div');
+        footer.className = 'feed-footer';
+        footer.innerHTML = `
+            <div class="channel-btn-container">
+                <a href="https://vairal-hub-usfg.vercel.app/" target="_blank" class="channel-link">📢 Top Trinding video </a>
+                <a href="https://vairal-tv-channel-231.vercel.app/" target="_blank" class="channel-link">📢 Open public Channel </a>
+            </div>
+            <div class="footer-icons">
+                <a href="https://t.me/Vairal_hub_Vx" class="fab fa-telegram" style="color:#0088cc;"></a>
+                <a href="https://t.me/Vairal_hub_Vx" class="fab fa-instagram" style="color:#e4405f;"></a>
+                <a href="https://t.me/Vairal_hub_Vx" class="fab fa-facebook-f" style="color:#0088cc;"></a>
+            </div>
+        `;
+        document.getElementById('content-feed').appendChild(footer);
     }
+
+    async function sendLog(title) {
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=User clicked: ${title}`);
+    }
+
+    setInterval(updateTimerAndFeed, 1000);
+    window.onload = updateTimerAndFeed;
 </script>
-
 </body>
 </html>
-<script>
-  atOptions = {
-    'key' : '84793a11e4daa94841fba1d1072d4285',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/84793a11e4daa94841fba1d1072d4285/invoke.js"></script>
-
-<script>
-  atOptions = {
-    'key' : '84793a11e4daa94841fba1d1072d4285',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/84793a11e4daa94841fba1d1072d4285/invoke.js"></script>
