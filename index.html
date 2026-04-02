@@ -2,280 +2,233 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-   <script src="https://pl28729896.effectivegatecpm.com/53/fb/7c/53fb7cda091e4b9396c5f2eeab9fdf7f.js"></script>
-
-
-    <title>Vairal-hub Vx </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vairal_tv_bot</title>
     <style>
-        :root { --tg-blue: #0088cc; --tg-bg: #e7ebf0; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f4f7f6; }
+        header { background: #0088cc; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 22px; font-weight: bold; }
+        .user-id-tag { font-size: 10px; background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 4px; }
         
-        body { background: #f0f2f5; height: 100vh; overflow: hidden; display: flex; justify-content: center; }
-
-        .clone-container {
-            width: 100%; max-width: 450px; height: 100vh; background: var(--tg-bg);
-            display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
-            background-size: cover;
-        }
-
-        .sticky-top { position: sticky; top: 0; z-index: 1000; display: flex; flex-direction: column; }
+        .nav-buttons { display: flex; justify-content: space-between; gap: 10px; padding: 15px; background: #fff; border-bottom: 1px solid #ddd; }
+        .btn { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; flex: 1; font-size: 13px; }
+        .btn-viral { background-color: #ff4757; color: white; }
+        .btn-links { background-color: #f39c12; color: white; }
         
-        .header { background: var(--tg-blue); color: white; padding: 10px 15px; display: flex; align-items: center; justify-content: space-between; }
-        .header-left { display: flex; align-items: center; gap: 10px; }
-        .avatar { width: 38px; height: 38px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid rgba(255,255,255,0.4); }
-
-        .social-icons-header { display: flex; gap: 12px; align-items: center; }
-        .social-icons-header a { color: white; font-size: 18px; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255,255,255,0.1); border-radius: 50%; }
-
-        #content-feed { flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; -webkit-overflow-scrolling: touch; }
-
-        .msg-bubble { background: white; border-radius: 12px; width: 100%; display: flex; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.15); flex-shrink: 0; min-height: 120px; }
+        .container { padding: 15px; }
         
-        /* Trailer Style */
-        .trailer-bubble { opacity: 0.6; filter: grayscale(0.5); border: 1px solid #ddd; }
-        .trailer-label { background: #ff4757; color: white; font-size: 9px; padding: 2px 6px; border-radius: 4px; position: absolute; margin: 5px; font-weight: bold; }
+        .video-container { display: none; background: #000; margin-bottom: 10px; border-radius: 12px; overflow: hidden; position: relative; }
+        video { width: 100%; aspect-ratio: 16/9; display: block; }
 
-        .thumb-container { width: 38%; flex-shrink: 0; position: relative; }
-        .thumb-img { width: 100%; height: 100%; object-fit: cover; background: #eee; }
+        .wm { position: absolute; color: rgba(255, 255, 255, 0.4); font-size: 12px; pointer-events: none; z-index: 10; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+        .wm-tl { top: 40px; left: 10px; }
+        .wm-tr { top: 40px; right: 10px; }
+        .wm-bl { bottom: 10px; left: 10px; }
+        .wm-br { bottom: 10px; right: 10px; }
+        .wm-mid { top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 16px; opacity: 0.3; }
 
-        .post-body { width: 62%; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; }
+        .action-bar { display: none; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
+        .action-btn { flex: 1; padding: 12px 5px; border-radius: 8px; border: none; color: white; font-size: 12px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .bg-telegram { background-color: #0088cc; }
+        .bg-whatsapp { background-color: #25d366; }
+        .bg-share { background-color: #128C7E; }
+
+        .section-title { font-size: 18px; font-weight: bold; margin: 20px 0 10px 0; color: #555; border-left: 4px solid #0088cc; padding-left: 10px; }
         
-        .title-wrapper { display: flex; justify-content: space-between; align-items: flex-start; gap: 5px; }
-        .post-title { font-size: 14px; font-weight: bold; color: #000; line-height: 1.2; flex: 1; }
-        .wa-share-btn { color: #25D366; text-decoration: none; font-size: 18px; padding: 2px; }
+        #postList, #linksContainer { display: grid; gap: 12px; margin-bottom: 30px; }
+        .post-card { display: flex; align-items: center; background: white; padding: 10px; border-radius: 10px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .post-logo-img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; margin-right: 15px; background: #ddd; flex-shrink: 0; }
+        .post-title { font-size: 15px; font-weight: 600; color: #333; flex-grow: 1; }
+        
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow-y: auto; }
+        .modal-content { background-color: #f4f7f6; margin: 5% auto; padding: 20px; border-radius: 15px; width: 90%; max-width: 500px; position: relative; min-height: 300px; }
+        .close-btn { position: absolute; right: 15px; top: 10px; font-size: 28px; cursor: pointer; color: #333; }
 
-        .post-desc { font-size: 11px; color: #666; margin-bottom: 5px; }
-
-        .watch-btn { display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%; padding: 8px; background: #eef7ff; color: var(--tg-blue); text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 12px; border: 1px solid rgba(0, 136, 204, 0.1); }
-        .locked-btn { background: #f1f2f6; color: #747d8c; border: 1px solid #dfe4ea; cursor: not-allowed; }
-
-        .feed-footer { margin: 10px 0 30px 0; padding: 15px; text-align: center; background: rgba(255, 255, 255, 0.9); border-radius: 15px; flex-shrink: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .channel-btn-container { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
-        .channel-link { display: block; width: 100%; padding: 10px; background: var(--tg-blue); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 13px; }
-
-        .footer-icons { display: flex; justify-content: center; gap: 20px; margin-top: 10px; border-top: 1px solid #eee; padding-top: 10px; }
-        .footer-icons a { font-size: 26px; text-decoration: none; }
-
-        .timer-box { background: #fff; padding: 10px; border-radius: 10px; text-align: center; margin-bottom: 10px; border: 1px dashed var(--tg-blue); }
-        .timer-text { font-size: 12px; color: #444; font-weight: bold; }
-        #countdown { color: #ff4757; font-size: 16px; }
-        .section-header { font-size: 14px; font-weight: bold; color: var(--tg-blue); margin: 10px 0 5px 0; display: flex; align-items: center; gap: 5px; }
+        .loader { text-align: center; padding: 30px; color: #888; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="clone-container">
-    <div class="sticky-top">
-        <div class="header">
-            <div class="header-left">
-                <div class="avatar">Bot</div>
-                <div>
-                    <div style="font-weight: bold; font-size: 14px;">Vairal-tv bot </div>
-                    <div style="font-size: 10px; opacity: 0.8;">online</div>
-                </div>
-            </div>
-            <div class="social-icons-header">
-                <a href="https://t.me/Vairal_hub_Vx"><i class="fab fa-telegram-plane"></i></a>
-                <a href="https://t.me/Vairal_hub_Vx"><i class="fab fa-instagram"></i></a>
-                <a href="https://t.me/Vairal_hub_Vx"><i class="fab fa-facebook-f"></i></a>
-            </div>
+    <header>
+        <div class="logo">Vairal_tv_bot  [telegram]</div>
+        <div id="userIdDisplay" class="user-id-tag">User ID: Loading...</div>
+    </header>
+
+    <div class="nav-buttons">
+        <button class="btn btn-viral" onclick="loadTelegramPosts()">Vairal video </button>
+        <button class="btn btn-links" onclick="openLinkMaster()">Link Master</button>
+    </div>
+
+    <div class="container">
+        <div id="videoSection" class="video-container">
+            <div id="videoTitleDisplay" style="color: #fff; padding: 10px; background: #222; font-size: 13px;"></div>
+            <div class="wm wm-tl">Vairal_tv_bot</div>
+            <div class="wm wm-tr">Vairal_tv_bot</div>
+            <div class="wm wm-bl">Vairal_tv_bot</div>
+            <div class="wm wm-br">Vairal_tv_bot</div>
+            <div class="wm wm-mid">Vairal_tv_bot</div>
+            <video id="mainPlayer" controls playsinline controlsList="nodownload" oncontextmenu="return false;">
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+
+        <div id="socialBar" class="action-bar">
+            <a href="https://t.me/+q61jZljAYi4yMTc1" target="_blank" class="action-btn bg-telegram">Telegram</a>
+            <a href="https://whatsapp.com/channel/0029VbCo56EEVccT35nAwa10" target="_blank" class="action-btn bg-whatsapp">WhatsApp</a>
+            <button onclick="shareOnWhatsApp()" class="action-btn bg-share">Share 📲</button>
+        </div>
+
+        <div class="section-title">New Viral Videos</div>
+        <div id="postList"><div class="loader">🙏🏼🙏🏼 please wait ...</div></div>
+    </div>
+
+    <div id="linksModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeLinkMaster()">&times;</span>
+            <div class="section-title">External Links</div>
+            <div id="linksContainer"><div class="loader">Loading Links...</div></div>
         </div>
     </div>
-    <div id="content-feed"></div>
-</div>
 
-<script>
+    <script>
+        const BOT_TOKEN_UI = '8699882051:AAEdya_xhjtPX-uGVfnQGEF_xNe6Qd7fpK0';
+        const BOT_TOKEN_VIDEO = '8607194455:AAH6jygqfdfoKL1DNSuvjoUBees9jKmINPc';
+        // Updated Link Master API Token
+        const BOT_TOKEN_LINKS = '7938751733:AAEdQC9P6d2T_Q8Ub7pCW3IhmjgxyT5KKkg';
 
-    const BOT_TOKEN = '7938751733:AAEdQC9P6d2T_Q8Ub7pCW3IhmjgxyT5KKkg';
-    const CHAT_ID = '6262892880';
-    const FIXED_YOUTUBE_LINK = "https://vairal-tv-bot.vercel.app/"; 
+        window.onload = function() {
+            initUser();
+            loadTelegramPosts();
+        };
 
-    // Saari posts yahan add karein (Kam se kam 20-30 videos rakhen)
-    const allPosts = [
-        { title: "11ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "12yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "13rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "14ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "15yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "16rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "17ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "18ayal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "19rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "20ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "21ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "22ayal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "23hi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "24ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "25ayal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "26rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "27al gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "28ayal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "29ohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "30yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "0rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "1ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "2yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "3rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "4ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "5al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "6rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "7ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "8al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "9rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "31ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "32yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "33rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "34ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "35al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "36rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "37ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "38al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "39rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "41ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "42yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "43rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "44ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "45al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "46rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "47ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "48al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "49rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "51ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "52yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "53rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "54ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "55al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "56rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "57ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "58al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "59rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "61ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "62yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "63rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "64ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "65al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "66rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "67ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "68al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "69rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "71ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "72yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "73rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "74ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "75al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "76rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "77ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "78al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "79rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "81ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "82yal gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "83rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "84ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "85al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "86rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-        { title: "87ayal gaming video 1", thumb: "https://i.ibb.co/TDLGF7CF/In-Shot-20260209-215103448.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "88al gaming video 2", thumb: "https://i.ibb.co/F4LghgRT/In-Shot-20260212-103521928.jpg", link: "https://1024terabox.com/s/1jlW4M5hwWkxXs9XWMGTSbw", desc: "Payal gaming video!" },
-        { title: "89rohi mine video 3", thumb: "https://i.ibb.co/9kHCkNZ1/In-Shot-20260212-103901093.jpg", link: "https://1024terabox.com/s/15Uskmmd67o6xekwaOlKCyg", desc: "Arohi mine video!" },
-
-        // ... Baaki 10-20 videos yahan copy-paste kar dein
-    ];
-
-    function updateTimerAndFeed() {
-        const now = new Date();
-        const msIn4Hours = 4 * 60 * 60 * 1000;
-        const currentBlock = Math.floor(now.getTime() / msIn4Hours);
-        const nextBlockTime = (currentBlock + 1) * msIn4Hours;
-        const timeLeft = nextBlockTime - now.getTime();
-
-        const h = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
-        const m = Math.floor((timeLeft / (1000 * 60)) % 60);
-        const s = Math.floor((timeLeft / 1000) % 60);
-        const timerDisplay = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-        
-        const startIndex = (currentBlock * 6) % allPosts.length;
-        const activePosts = allPosts.slice(startIndex, startIndex + 6);
-        
-        // Next 10 posts for Trailer section
-        const trailerIndex = (startIndex + 6) % allPosts.length;
-        const trailerPosts = allPosts.slice(trailerIndex, trailerIndex + 6);
-
-        const feed = document.getElementById('content-feed');
-        feed.innerHTML = `
-            <div class="timer-box">
-                <p class="timer-text">🔥 NEXT UPDATE IN: <span id="countdown">${timerDisplay}</span></p>
-            </div>
-            <div class="section-header">⭐ TRENDING NOW (6)</div>
-        `;
-
-        activePosts.forEach(post => feed.appendChild(createPostBubble(post, false)));
-
-        if(trailerPosts.length > 0) {
-            const trHeader = document.createElement('div');
-            trHeader.className = 'section-header';
-            trHeader.innerHTML = "🎬 NEXT COMING TRAILERS (6)";
-            feed.appendChild(trHeader);
-            trailerPosts.forEach(post => feed.appendChild(createPostBubble(post, true)));
+        function initUser() {
+            let userId = localStorage.getItem('vairal_user_id');
+            if (!userId) {
+                userId = 'VTV-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                localStorage.setItem('vairal_user_id', userId);
+            }
+            document.getElementById('userIdDisplay').innerText = "User ID: " + userId;
         }
 
-        renderFooter();
-    }
+        function shareOnWhatsApp() {
+            const siteUrl = "https://vairal-tv-bot.vercel.app/";
+            const text = encodeURIComponent("Hey! Check out this viral video 🔞❌: " + siteUrl);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
 
-    function createPostBubble(post, isTrailer) {
-        const shareText = encodeURIComponent(`📺 Vairal video : ${post.title}\n\n🔗 Video Link: ${FIXED_YOUTUBE_LINK}`);
-        const waLink = `https://wa.me/?text=${shareText}`;
-        
-        const item = document.createElement('div');
-        item.className = `msg-bubble ${isTrailer ? 'trailer-bubble' : ''}`;
-        item.innerHTML = `
-            <div class="thumb-container">
-                ${isTrailer ? '<span class="trailer-label">COMING SOON</span>' : ''}
-                <img src="${post.thumb}" class="thumb-img">
-            </div>
-            <div class="post-body">
-                <div class="post-info">
-                    <div class="title-wrapper">
-                        <span class="post-title">${post.title}</span>
-                        ${!isTrailer ? `<a href="${waLink}" target="_blank" class="wa-share-btn"><i class="fab fa-whatsapp"></i></a>` : ''}
-                    </div>
-                    <p class="post-desc">${post.desc}</p>
-                </div>
-                <a href="${isTrailer ? 'javascript:void(0)' : post.link}" target="_blank" 
-                   class="watch-btn ${isTrailer ? 'locked-btn' : ''}" 
-                   onclick="${isTrailer ? 'return false;' : `sendLog('${post.title.replace(/'/g, "\\'")}')`}">
-                   ${isTrailer ? '🔒 Coming in 4h...' : '▶️ Watch now'}
-                </a>
-            </div>
-        `;
-        return item;
-    }
+        // --- LINK MASTER LOGIC ---
+        function openLinkMaster() {
+            document.getElementById('linksModal').style.display = "block";
+            loadMasterLinks();
+        }
 
-    function renderFooter() {
-        const footer = document.createElement('div');
-        footer.className = 'feed-footer';
-        footer.innerHTML = `
-            <div class="channel-btn-container">
-                <a href="https://vairal-hub-usfg.vercel.app/" target="_blank" class="channel-link">📢 Top Trinding video </a>
-                <a href="https://vairal-tv-channel-231.vercel.app/" target="_blank" class="channel-link">📢 Open public Channel </a>
-            </div>
-            <div class="footer-icons">
-                <a href="https://t.me/Vairal_hub_Vx" class="fab fa-telegram" style="color:#0088cc;"></a>
-                <a href="https://t.me/Vairal_hub_Vx" class="fab fa-instagram" style="color:#e4405f;"></a>
-                <a href="https://t.me/Vairal_hub_Vx" class="fab fa-facebook-f" style="color:#0088cc;"></a>
-            </div>
-        `;
-        document.getElementById('content-feed').appendChild(footer);
-    }
+        function closeLinkMaster() {
+            document.getElementById('linksModal').style.display = "none";
+        }
 
-    async function sendLog(title) {
-        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=User clicked: ${title}`);
-    }
+        async function loadMasterLinks() {
+            const container = document.getElementById('linksContainer');
+            container.innerHTML = '<div class="loader">Fetching Links...</div>';
+            try {
+                // Using limit=100 and offset=-100 to get the most recent posts
+                const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN_LINKS}/getUpdates?limit=50&offset=-50`);
+                const data = await response.json();
+                if (data.ok && data.result.length > 0) {
+                    container.innerHTML = "";
+                    data.result.reverse().forEach(async (item) => {
+                        const msg = item.message || item.channel_post;
+                        if (msg && msg.photo && msg.caption) {
+                            const urlRegex = /(https?:\/\/[^\s]+)/;
+                            const link = msg.caption.match(urlRegex) ? msg.caption.match(urlRegex)[0] : "#";
+                            const title = msg.caption.replace(urlRegex, '').split('\n')[0].trim() || "Open Link";
+                            
+                            const fileId = msg.photo[msg.photo.length - 1].file_id;
+                            const imgUrl = await getSpecificImageUrl(BOT_TOKEN_LINKS, fileId);
+                            
+                            const card = document.createElement('div');
+                            card.className = 'post-card';
+                            card.onclick = () => window.open(link, '_blank');
+                            card.innerHTML = `<img src="${imgUrl}" class="post-logo-img"><div class="post-title">${title}<br><small style="color:#0088cc;">Visit Link →</small></div>`;
+                            container.appendChild(card);
+                        }
+                    });
+                } else { container.innerHTML = '<div class="loader">No posts found yet.</div>'; }
+            } catch (e) { container.innerHTML = '<div class="loader">Error loading links.</div>'; }
+        }
 
-    setInterval(updateTimerAndFeed, 1000);
-    window.onload = updateTimerAndFeed;
-</script>
+        async function getSpecificImageUrl(token, fileId) {
+            try {
+                const res = await fetch(`https://api.telegram.org/bot${token}/getFile?file_id=${fileId}`);
+                const fileData = await res.json();
+                return `https://api.telegram.org/file/bot${token}/${fileData.result.file_path}`;
+            } catch (e) { return "https://via.placeholder.com/60"; }
+        }
+        // --- END LINK MASTER LOGIC ---
+
+        async function loadTelegramPosts() {
+            const postListDiv = document.getElementById('postList');
+            postListDiv.innerHTML = '<div class="loader">🙏🏼🙏🏼 please wait ...</div>';
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN_UI}/getUpdates?limit=50`);
+                const data = await response.json();
+                if (data.ok && data.result.length > 0) renderUI(data.result);
+            } catch (e) { postListDiv.innerHTML = '<div class="loader">🙏🏼🙏🏼 please wait ...</div>'; }
+        }
+
+        async function renderUI(items) {
+            const postListDiv = document.getElementById('postList');
+            postListDiv.innerHTML = "";
+            for (const item of items.reverse()) {
+                const msg = item.message || item.channel_post;
+                if (msg && msg.photo && msg.caption) {
+                    const postTitle = msg.caption.split('\n')[0].trim();
+                    const fileId = msg.photo[msg.photo.length - 1].file_id;
+                    const imgUrl = await getSpecificImageUrl(BOT_TOKEN_UI, fileId);
+                    const card = document.createElement('div');
+                    card.className = 'post-card';
+                    card.onclick = () => { matchAndPlay(postTitle); };
+                    card.innerHTML = `<img src="${imgUrl}" class="post-logo-img"><div class="post-title">${postTitle}</div>`;
+                    postListDiv.appendChild(card);
+                }
+            }
+        }
+
+        async function matchAndPlay(postTitle) {
+            const videoTitleDisplay = document.getElementById('videoTitleDisplay');
+            videoTitleDisplay.innerText = "Searching matching video...";
+            try {
+                const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN_VIDEO}/getUpdates`);
+                const data = await res.json();
+                if (data.ok) {
+                    const match = data.result.find(item => {
+                        const m = item.message || item.channel_post;
+                        return m && m.caption && m.caption.trim().toLowerCase() === postTitle.toLowerCase();
+                    });
+                    if (match) {
+                        const videoMsg = match.message || match.channel_post;
+                        const videoFileId = videoMsg.video ? videoMsg.video.file_id : (videoMsg.document ? videoMsg.document.file_id : null);
+                        playFinalVideo(videoFileId, postTitle);
+                    } else { alert("Match not found in Video Bot!"); }
+                }
+            } catch (e) { alert("Error matching titles."); }
+        }
+
+        async function playFinalVideo(fileId, title) {
+            try {
+                const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN_VIDEO}/getFile?file_id=${fileId}`);
+                const fileInfo = await res.json();
+                if (fileInfo.ok) {
+                    const videoPath = `https://api.telegram.org/file/bot${BOT_TOKEN_VIDEO}/${fileInfo.result.file_path}`;
+                    document.getElementById('videoSection').style.display = "block";
+                    document.getElementById('socialBar').style.display = "flex";
+                    const player = document.getElementById('mainPlayer');
+                    player.src = videoPath;
+                    document.getElementById('videoTitleDisplay').innerText = "Playing: " + title;
+                    player.scrollIntoView({behavior: 'smooth'});
+                    player.play();
+                }
+            } catch (e) { alert("Video play error."); }
+        }
+    </script>
 </body>
-</html>
+    </html>
